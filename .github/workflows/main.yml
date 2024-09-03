@@ -10,6 +10,8 @@ jobs:
       uses: actions/checkout@v4
     - name: install deps
       run: sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install -y ca-certificates debsums dosfstools fai-server fai-setup-storage fdisk make python3 python3-libcloud python3-marshmallow python3-pytest python3-yaml qemu-utils udev
+    - name: FAI setup
+      run: sudo fai-setup
     - name: build the image
       run: sudo fai-diskimage --verbose --size 2G --class BASE,DEBIAN,CLOUD,ARM64,BOOKWORM,BUILD_IMAGE,SYSTEM_BOOT --cspace DIR/config_space/bookworm arm64.raw
     - name: Publish the artifiacts
