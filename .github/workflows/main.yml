@@ -9,7 +9,7 @@ jobs:
     - name: Check out repository code
       uses: actions/checkout@v4
     - name: prepare
-      run: echo "deb https://fai-project.org/download bookworm koeln" >> /etc/apt/sources.list
+      run: echo "deb https://fai-project.org/download bookworm koeln" | sudo tee -a /etc/apt/sources.list
     - name: install deps1
       run: sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install -y wget ca-certificates && wget https://fai-project.org/download/fai-project.gpg && cp fai-project.gpg /etc/apt/trusted.gpg.d/
     - name: install deps2
