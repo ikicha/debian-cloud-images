@@ -13,7 +13,7 @@ jobs:
     - name: install deps
       run: sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install -y ca-certificates debsums dosfstools fai-server fai-setup-storage fdisk make python3 python3-libcloud python3-marshmallow python3-pytest python3-yaml qemu-utils udev qemu-system-arm qemu-user-static
     - name: build the image
-      run: CLOUD_RELEASE_ID=nocloud CLOUD_RELEASE_VERSION=$(date +"%Y%m%d%H%M") sudo -E fai-diskimage --verbose --size 2G --class BASE,DEBIAN,NOCLOUD,ARM64,LINUX_VERSION_BASE+LINUX_VARIANT_CLOUD,BOOKWORM,BUILD_IMAGE,SYSTEM_BOOT --cspace $PWD/config_space/bookworm arm64.raw || true
+      run: sudo make image_bookworm_nocloud_arm64
     - name: Publish the artifiacts
       uses: actions/upload-artifact@c7d193f32edcb7bfad88892161225aeda64e9392 # aka v4.0.0
       with:
